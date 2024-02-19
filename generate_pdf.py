@@ -40,7 +40,7 @@ def generate_pdf(
 
     header_handler = HeaderHandler(doc, canvas, page_index, primary_color, secondary_color, font_name=primary_font)
     navigation_path = PAGE_NAVIGATIONS[FIRST_PATH] + PAGE_NAVIGATIONS[SECOND_PATH] + PAGE_NAVIGATIONS[page_name]
-    navigation_path_width = header_handler.add_navigation_path_to_page_header(navigation_path, current_topic=page_name)
+    navigation_path_width = header_handler.add_navigation_path_to_page_header(navigation_path, current_path=page_name)
 
     header_handler.add_page_index_to_page_header()
     header_handler.add_line_separator_to_page_header(navigation_path_width)
