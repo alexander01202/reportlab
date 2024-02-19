@@ -4,8 +4,9 @@ This scripts generates the pdf document
 from reportlab.platypus import BaseDocTemplate, Spacer
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet
-from docs_text import *
+from docs_texts import *
 from flowables import *
+from reportlab.lib import colors
 from headerhandler import HeaderHandler
 from framehandler import FrameHandler
 
@@ -56,9 +57,6 @@ def generate_pdf(
         frame_count=frame_count
     )
     frames = frame_handler.create_frames()
-
-    # Create a list to hold the contents of the PDF
-    page1_frame1_flowables.append(Spacer(0, doc.leftMargin))
 
     for i, frame_flowables in enumerate(page_flowables):
         frame_handler.add_FlowablesList_to_frame(frame=frames[i], flowables= frame_flowables)
