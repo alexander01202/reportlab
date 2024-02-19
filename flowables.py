@@ -29,10 +29,11 @@ def crop_image(input_image_path, crop_box=(20, 20, 100, 100)):
 
 class Flowables:
 
-    def __init__(self, document, primary_color, secondary_color) -> None:
+    def __init__(self, document, primary_color, secondary_color, page_index) -> None:
         self.doc = document
         self.primary_color = primary_color
         self.secondary_color = secondary_color
+        self.page_index = page_index
         self.styles = Styles(primary_color, secondary_color)
 
     def get_page1_frame1_flowables(self):
@@ -112,7 +113,7 @@ class Flowables:
             Paragraph(PAGE_ONE_SUBTITLE, self.styles.get_small_text_styling(backColor="#ADC3CA", rightIndent=490, alignment=TA_CENTER)),
             Paragraph(PAGE_TWO_TITLE, self.styles.get_header_styling(leading=40, rightIndent=350)),
             Spacer(1, 1.2 * inch),
-            Paragraph("<super>02/</super> Next Few Pages", self.styles.get_normal_text_styling(fontName='NeueMontreal',)),
+            Paragraph(f"<super>{self.page_index}/</super> Next Few Pages", self.styles.get_normal_text_styling(fontName='NeueMontreal',)),
             Paragraph(PAGE_TWO_BODY, self.styles.get_normal_text_styling(rightIndent=200, firstLineIndent=60, leading=20, alignment=TA_LEFT, fontSize=20, fontName='NeueMontreal')),
             Paragraph('Summary of Tests', self.styles.get_small_text_styling(fontName='NeueMontreal',textTransform='capitalize', spaceBefore=270, alignment=TA_LEFT)),
             Table(wrap, spaceBefore=10, style=self.styles.get_table_style())

@@ -59,12 +59,10 @@ class HeaderHandler:
         )
 
     def add_page_index_to_page_header(self) -> None:
-        pg_index = '0' + self.page_index # eg 01, 02, 011
-        pg_index = pg_index if int(self.page_index) < 10 else self.page_index
 
         self.c.setFont('NeueMontreal', 15)
         self.c.setFillColor(self.primary_color)
-        self.c.drawString(self.doc.width, self.doc.height, pg_index)
+        self.c.drawString(self.doc.width, self.doc.height, self.page_index)
 
     def add_line_separator_to_page_header(self, page_topics_width:int):
         x1, y1 = page_topics_width, self.doc.height
