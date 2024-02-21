@@ -25,6 +25,3 @@ class FrameHandler:
     
     def add_flowable_to_frame(self, frame, flowable):
         frame.add(flowable, self.c)
-    
-    def add_FlowablesList_to_frame(self, frame, flowables):
-        frame.addFromList(flowables, self.c)

@@ -8,14 +8,15 @@ class HeaderHandler:
         self.c = canvas
         self.doc = document
         self.font_name = font_name
-        self.secondary_color = secondary_color
         self.primary_color = primary_color
+        self.secondary_color = secondary_color
         self.page_index = page_index
+        self.header_y_pos = document.height - 5 # entire header y position 
 
     def add_navigation_path_to_page_header(self, paths:list[str], current_path:str, ellipsis=True):
 
         path_x_position = self.doc.leftMargin + 5
-        path_y_position = self.doc.height + 2
+        path_y_position = self.header_y_pos + 2
         
         # Create a TextObject 
         textobject = self.c.beginText()
@@ -62,13 +63,16 @@ class HeaderHandler:
 
         self.c.setFont('NeueMontreal', 15)
         self.c.setFillColor(self.primary_color)
-        self.c.drawString(self.doc.width, self.doc.height, self.page_index)
+        self.c.drawString(self.doc.width - self.doc.leftMargin, self.header_y_pos, self.page_index)
 
     def add_line_separator_to_page_header(self, page_topics_width:int):
-        x1, y1 = page_topics_width, self.doc.height
-        x2, y2 = self.doc.width, y1
+        index_width = self.c.stringWidth(self.page_index, "NeueMontreal", 15)
+        total_space_index_used = index_width + self.doc.leftMargin
+
+        x1, y1 = page_topics_width, self.header_y_pos
+        x2, y2 = self.doc.width - total_space_index_used, y1
 
         # Set line color and width
         self.c.setStrokeColor(self.secondary_color)  # Set line color to secondary color
         self.c.setLineWidth(0.5)  # Set line width to 0.5 points
-        self.c.line(x1, y1+5, x2 - 10, y2+5)
+        self.c.line(x1, y1+5, x2, y2+5)
