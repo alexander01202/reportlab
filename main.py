@@ -10,8 +10,7 @@ from generate_pdf import generate_pdf
 from flowables import Flowables
 
 
-if __name__ == "__main__":
-    filename = "output.pdf"
+def main(filename):
     canvas = Canvas(filename, pagesize=letter)
     doc = BaseDocTemplate(
         filename,
@@ -70,3 +69,9 @@ if __name__ == "__main__":
     )
     canvas.showPage()
     canvas.save()
+
+
+if __name__ == "__main__":
+    filename = "output.pdf"
+    main(filename)
+    
